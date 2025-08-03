@@ -18,7 +18,7 @@ const team = [
     port: "",
     degree: "3rd Yr Computer Science / Law",
     year: "2025",
-    img: null,
+    img: "annabella.png",
   },
   {
     name: "William Lin",
@@ -50,7 +50,7 @@ const team = [
     port: "Marketing",
     degree: "2nd Yr Commerce / Media",
     year: "2025",
-    img: null,
+    img: "marcus.png",
   },
   {
     name: "Mark Qu",
@@ -58,7 +58,7 @@ const team = [
     port: "Sponsorships",
     degree: "2nd Yr City Planning",
     year: "2025",
-    img: null,
+    img: "mark.png",
   },
   {
     name: "Nicole Chan",
@@ -66,7 +66,7 @@ const team = [
     port: "Externals",
     degree: "3rd Yr Commerce / Media",
     year: "2025",
-    img: null,
+    img: "nicole.png",
   },
   {
     name: "Lianzhi Li",
@@ -106,7 +106,7 @@ const team = [
     port: "Internals",
     degree: "3rd Computer Science",
     year: "2025",
-    img: null,
+    img: "davis.png",
   },
   {
     name: "Jay Jeong",
