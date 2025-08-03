@@ -138,7 +138,7 @@ const team = [
     port: "Marketing",
     degree: "2nd Yr Commerce / Design",
     year: "2025",
-    img: null,
+    img: "natashaLo.png",
   },
   {
     name: "Max Li",
