@@ -1,12 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
+
+import Home from "../assets/images/home.png";
+import GroupHome from "../assets/images/group-home.png";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Contact from "../components/Contact";
-import Home from "../assets/home/home.png";
-import GroupHome from "../assets/home/group-home.png";
-import { events } from "../data/eventsinfo";
 import { HomeEventCard } from "../components/Card";
+
+import { events } from "../data/eventsinfo";
+import { blogs, newsletters } from "../data/publicationsinfo";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -19,6 +23,7 @@ function HomePage() {
     }
   }, [location]);
 
+  // data
   const upcoming = events.filter((e) => e.type === "upcoming" && e.year === "2025");
   const past = events.filter((e) => e.type === "past" && e.year === "2025");
 

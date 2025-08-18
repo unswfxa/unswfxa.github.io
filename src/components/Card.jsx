@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import placeholder from "../assets/team/2025/placeholder.png";
 
-const CardDetails = ({ array, divStyle, gridStyle, img, imgStyle, cardStyle, home }) => {
+const EventCardDetails = ({ array, divStyle, gridStyle, img, imgStyle, cardStyle, home }) => {
   return (
     <div className={divStyle}>
       {array && array.length > 0 ? (
@@ -33,7 +33,7 @@ const CardDetails = ({ array, divStyle, gridStyle, img, imgStyle, cardStyle, hom
 
 export const EventCard = ({ array }) => {
   return (
-    <CardDetails
+    <EventCardDetails
       array={array}
       divStyle="w-full flex flex-row overflow-x-auto whitespace-nowrap gap-4 p-4"
       gridStyle="flex flex-shrink-0 transform transition-transform duration-300 hover:scale-105"
@@ -47,7 +47,7 @@ export const EventCard = ({ array }) => {
 
 export const HomeEventCard = ({ array }) => {
   return (
-    <CardDetails
+    <EventCardDetails
       array={array}
       divStyle="flex flex-wrap justify-center gap-8 w-full"
       gridStyle="w-[500px] bg-white rounded-xl overflow-hidden shadow-sm transform transition-transform duration-300 hover:scale-105"
@@ -70,6 +70,17 @@ export const ProfileCard = ({ name, role, img }) => {
       <img src={img || placeholder} alt={name} className="w-[150px] h-[150px] rounded-full object-cover" />
       <p className="font-bold text-lg text-black">{name}</p>
       <p className="text-sm text-black">{role}</p>
+    </div>
+  );
+};
+
+export const PublicationsCard = ({ item }) => {
+  return (
+    <div className="py-4 flex flex-col transform transition-transform duration-300 hover:scale-105">
+      <img src={item.image?.[0] || ""} alt={item.title} className="w-full h-48 object-cover rounded-xl mb-4" />
+      <h3 className="text-xs font-semibold mb-2">{item.title}</h3>
+      {item.publishdate?.[0] && <p className="text-xs text-gray-600 mb-2">Published on {item.publishdate}</p>}
+      {item.authors?.[0] && <p className="text-xs text-gray-600">By {item.authors.filter(Boolean).join(", ")}</p>}
     </div>
   );
 };

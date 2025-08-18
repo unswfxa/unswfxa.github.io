@@ -1,20 +1,24 @@
 import { blogs, newsletters } from "../data/publicationsinfo";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { PublicationsCard } from "../components/Card";
 
 function PublicationsPage() {
   // "blogs" and "newsletters" will have all the info of any blogs and newsletters to post/publish ...
 
   const createPublicationCards = (items) => {
+    // sort items by most recent
+    const sort = items.sort((a, b) => {
+      if (a.publisdate && b.publisdate) return new Date(b.publishdate) - new Date(a.publishdate);
+    });
+    // create grid
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-        {items.map((item, index) => (
-          <div key={index} className="py-4 flex flex-col transform transition-transform duration-300 hover:scale-105">
-            <img src={item.image?.[0] || ""} alt={item.title} className="w-full h-48 object-cover rounded-xl mb-4" />
-            <h3 className="text-xs font-semibold mb-2">{item.title}</h3>
-            {item.publishdate?.[0] && <p className="text-xs text-gray-600 mb-2">Published on {item.publishdate}</p>}
-            {item.authors?.[0] && <p className="text-xs text-gray-600">By {item.authors.filter(Boolean).join(", ")}</p>}
-          </div>
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 pr-4 overflow-y-auto"
+        style={{ maxHeight: "300px" }}
+      >
+        {sort.map((item, index) => (
+          <PublicationsCard key={index} item={item} />
         ))}
       </div>
     );

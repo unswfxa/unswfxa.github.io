@@ -1,9 +1,9 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import MessageSent from "../components/MessageSent";
-import Fb from "../assets/home/fb.png";
-import Insta from "../assets/home/insta.png";
-import LinkedIn from "../assets/home/linkedin.png";
+import Fb from "../assets/images/fb.png";
+import Insta from "../assets/images/insta.png";
+import LinkedIn from "../assets/images/linkedin.png";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
