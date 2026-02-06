@@ -1,47 +1,94 @@
-import { blogs, newsletters } from "../data/publicationsinfo";
+import { blogs, newsletters, VOLUME_IMAGE_COUNTS } from "../data/publicationsinfo";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 
 function PublicationsPage() {
-  // "blogs" and "newsletters" will have all the info of any blogs and newsletters to post/publish ...
+  const volumes = Object.keys(VOLUME_IMAGE_COUNTS);
+  const totalVolumes = volumes.length;
 
-  const createPublicationCards = (items) => {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-        {items.map((item, index) => (
-          <div key={index} className="py-4 flex flex-col transform transition-transform duration-300 hover:scale-105">
-            <img src={item.image?.[0] || ""} alt={item.title} className="w-full h-48 object-cover rounded-xl mb-4" />
-            <h3 className="text-xs font-semibold mb-2">{item.title}</h3>
-            {item.publishdate?.[0] && <p className="text-xs text-gray-600 mb-2">Published on {item.publishdate}</p>}
-            {item.authors?.[0] && <p className="text-xs text-gray-600">By {item.authors.filter(Boolean).join(", ")}</p>}
-          </div>
-        ))}
-      </div>
-    );
+  const [volume, setVolume] = useState(volumes[volumes.length - 1]);
+  const [imageIndex, setImageIndex] = useState(1);
+
+  const totalImagesThisVolume = VOLUME_IMAGE_COUNTS[volume];
+  const imageSrc = `/publications/${volume}/${imageIndex}.png`;
+
+  // image left and right
+  const nextImage = () => {
+    setImageIndex((prev) => (prev < totalImagesThisVolume ? prev + 1 : 1));
+  };
+
+  const prevImage = () => {
+    setImageIndex((prev) => (prev > 1 ? prev - 1 : totalImagesThisVolume));
+  };
+
+  // volume up down
+  const nextVolume = () => {
+    const currentIndex = volumes.indexOf(volume);
+    const nextIndex = (currentIndex + 1) % totalVolumes;
+    setVolume(volumes[nextIndex]);
+    setImageIndex(1);
+  };
+
+  const prevVolume = () => {
+    const currentIndex = volumes.indexOf(volume);
+    const prevIndex = (currentIndex - 1 + totalVolumes) % totalVolumes;
+    setVolume(volumes[prevIndex]);
+    setImageIndex(1);
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
+    <div className="w-full min-h-screen flex flex-col items-center overflow-hidden">
       <Header />
-      <div className="p-20">
-        <h1 className="mt-20 text-7xl font-semibold flex justify-center mb-10 bg-gradient-to-r from-[#014EB1] to-[#31C6E1] bg-clip-text text-transparent">
-          Our Publications
+      <div className="mt-32 px-10 md:px-20 flex flex-col items-center space-y-12">
+        <h1 className="text-6xl font-semibold mb-8 bg-gradient-to-r from-[#014EB1] to-[#31C6E1] bg-clip-text text-transparent">
+          Publications
         </h1>
-        {/* Blogs */}
-        <section className="mb-10">
-          <h2 className="text-4xl font-bold pb-6">Blogs</h2>
-          <p className="text-[#828282]">What’s on in our community and find out more about our impact!</p>
-          {createPublicationCards(blogs)}
-        </section>
-        {/* Newsletters */}
-        <section>
-          <h2 className="text-4xl font-bold pb-6">Newsletters</h2>
-          <p className="text-[#828282]">
-            Keep up with trends in the market, what’s new in trading, find out more about foreign exchange and much
-            more!
+
+        <div className="relative w-full max-w-5xl h-[900px] md:h-[1000px] flex items-center justify-center pt-16 pb-24">
+          {/* Image */}
+          <img
+            src={imageSrc}
+            alt={`${volume} image ${imageIndex}`}
+            className="w-full h-full object-contain rounded-2xl shadow-lg"
+          />
+
+          {/* Page indicator in bottom-right */}
+          <p className="absolute bottom-4 right-4 text-sm text-white bg-black/50 px-3 py-1 rounded-md">
+            Page {imageIndex} / {totalImagesThisVolume}
           </p>
-          {createPublicationCards(newsletters)}
-        </section>
+
+          {/* Left / Right Image Controls */}
+          <button
+            onClick={prevImage}
+            className="absolute left-[-90px] p-3 rounded-full bg-white shadow hover:scale-110 transition"
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          <button
+            onClick={nextImage}
+            className="absolute right-[-90px] p-3 rounded-full bg-white shadow hover:scale-110 transition"
+          >
+            <ChevronRight size={32} />
+          </button>
+
+          {/* Top / Bottom Volume Controls */}
+          <button
+            onClick={nextVolume}
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 p-3 rounded-full bg-white shadow hover:scale-110 transition"
+          >
+            <ChevronUp size={32} />
+          </button>
+
+          <button
+            onClick={prevVolume}
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-3 rounded-full bg-white shadow hover:scale-110 transition"
+          >
+            <ChevronDown size={32} />
+          </button>
+        </div>
       </div>
       <Footer />
     </div>
