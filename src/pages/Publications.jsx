@@ -46,7 +46,7 @@ function PublicationsPage() {
           Publications
         </h1>
 
-        <div className="relative w-full max-w-5xl h-[900px] md:h-[1000px] flex items-center justify-center pt-16 pb-24">
+        <div className="relative w-full max-w-5xl h-[70vh] md:h-[900px] lg:h-[1000px] flex items-center justify-center pt-20 md:pt-16 pb-28 md:pb-24 px-14 md:px-0">
           {/* Image */}
           <img
             src={imageSrc}
@@ -62,14 +62,14 @@ function PublicationsPage() {
           {/* Left / Right Image Controls */}
           <button
             onClick={prevImage}
-            className="absolute left-[-90px] p-3 rounded-full bg-white shadow hover:scale-110 transition"
+              className="absolute left-0 -translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition md:-translate-x-16 lg:-translate-x-24"
           >
             <ChevronLeft size={32} />
           </button>
 
           <button
             onClick={nextImage}
-            className="absolute right-[-90px] p-3 rounded-full bg-white shadow hover:scale-110 transition"
+            className="absolute right-0 translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition md:translate-x-16 lg:translate-x-24"
           >
             <ChevronRight size={32} />
           </button>

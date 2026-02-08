@@ -12,6 +12,7 @@ export const VOLUME_IMAGE_COUNTS = {
   volume9: 11,
   volume10: 11,
   volume11: 11,
+  volumeFYG: 36,
 };
 
 export const blogs = [
