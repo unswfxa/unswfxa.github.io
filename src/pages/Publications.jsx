@@ -62,14 +62,14 @@ function PublicationsPage() {
           {/* Left / Right Image Controls */}
           <button
             onClick={prevImage}
-              className="absolute left-0 -translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition md:-translate-x-16 lg:-translate-x-24"
+            className="absolute left-0 -translate-x-1/2 sm:-translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition border-2 border-black"
           >
             <ChevronLeft size={32} />
           </button>
 
           <button
             onClick={nextImage}
-            className="absolute right-0 translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition md:translate-x-16 lg:translate-x-24"
+            className="absolute right-0 translate-x-1/2 sm:translate-x-full p-3 rounded-full bg-white shadow hover:scale-110 transition border-2 border-black"
           >
             <ChevronRight size={32} />
           </button>
